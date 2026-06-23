@@ -27,8 +27,10 @@ jobs:
 
       - name: Terraform Init
         run: |
-          ls -la
-          cat .terraform/environment
+          cd .terraform
+          terraform init
+          terraform validate
+          terraform plan -no-color
 
       # - name: Terraform Plan
       #   id: plan
