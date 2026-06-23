@@ -1,7 +1,7 @@
 name: Run Terraform Apply
-on:
-  workflow_run:
-    workflows: [terraform-plan]
+on: workflow_dispatch
+  # workflow_run:
+    # workflows: [terraform-plan]
 
 jobs:
   terraform-plan:
