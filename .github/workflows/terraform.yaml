@@ -8,9 +8,18 @@ jobs:
   terraform-plan:
     runs-on: ubuntu-latest
 
+    outputs:
+      CONTINUE_JOBS: ${{ steps.manual-trigger.outputs.CONTINUE_JOBS }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+
+      - name: manual-trigger
+        id: manual-trigger
+        uses: benhamiltonpro/manual-trigger@v1
+        with:
+          RUN_NAME: "terraform-apply"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -28,7 +37,11 @@ jobs:
           terraform validate
           terraform plan -no-color
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -no-color
+  terraform-apply:
+    needs: terraform-plan
+    if: needs.terraform-plan.outputs.CONTINUE_JOBS == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply Terraform
+        run: terraform apply 
     
