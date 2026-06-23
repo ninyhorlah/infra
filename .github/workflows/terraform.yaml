@@ -11,10 +11,6 @@ jobs:
   terraform-plan:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: .terraform/aws
-
     steps:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v4
@@ -30,7 +26,8 @@ jobs:
         run: terraform workspace select ${{ env.TF_WORKSPACE }} || terraform workspace new ${{ env.TF_WORKSPACE }}
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          ls -la
 
       # - name: Terraform Plan
       #   id: plan
