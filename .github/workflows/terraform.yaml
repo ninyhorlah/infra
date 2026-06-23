@@ -28,6 +28,7 @@ jobs:
       - name: Terraform Init
         run: |
           ls -la
+          ls .terraform
 
       # - name: Terraform Plan
       #   id: plan
