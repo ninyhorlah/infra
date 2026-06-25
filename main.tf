@@ -1,9 +1,6 @@
+data "aws_ecr_repositories" "ecr_repositories" {}
+
 module "ecr_repo" {
   source = "./modules/ecr"
-  ecr_repository_name = var.ecr_repository_name
-}
-
-module iam_role {
-  source = "./modules/iam_role"
-  ecr_repository_policy_name = "clarity-ecr-repo-policy"
+  ecr_repository_name = [for repo in data.aws_ecr_repositories.ecr_repositories.names : repo if repo != var.ecr_repository_name]
 }
