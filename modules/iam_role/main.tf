@@ -21,7 +21,7 @@ resource "aws_iam_role_policy" "ecr_role_policy" {
                 "ecr:PutImage",
                 "ecr:BatchGetImage"
             ],
-            "Resource": "${data.aws_partition.current.partition}:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/*"
+            "Resource": "arn:aws:ecr:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/*"
         },
         {
             "Effect": "Allow",
