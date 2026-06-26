@@ -9,3 +9,8 @@ module "ecr_repo" {
 module "s3" {
   source = "./modules/s3"
 }
+
+module "iam_role" {
+  source = "./modules/iam_role"
+  ecr_iam_role = var.ecr_iam_role
+}

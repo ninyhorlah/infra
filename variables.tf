@@ -3,3 +3,9 @@ variable "ecr_repository_name" {
   type        = list(string) 
   default     = ["clarity_ecr_repo"]
 }
+
+variable "ecr_iam_role" {
+  description = "The role for the ECR repository"
+  type        = string 
+  default     = "clarity_ecr_role"
+}
