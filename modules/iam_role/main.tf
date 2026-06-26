@@ -43,7 +43,7 @@ resource "aws_iam_role" "ecr_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ecr.amazonaws.com"
+            "AWS" = "arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:root"
         }
       },
     ]
