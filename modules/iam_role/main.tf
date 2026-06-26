@@ -39,7 +39,7 @@ resource "aws_iam_role" "ecr_role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole"
+        Action = ["sts:AssumeRole", "sts:TagSession"]
         Effect = "Allow"
         Sid    = ""
         Principal = {
