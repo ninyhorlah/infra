@@ -16,7 +16,6 @@ resource "aws_iam_role" "test_role" {
         Action = "ecr:GetAuthorizationToken"
         Effect = "Allow"
         Sid    = "GetAuthorizationToken"
-        Resource = "*"
         Principal = {
           Service = "ecr.amazonaws.com"
         }
@@ -32,7 +31,6 @@ resource "aws_iam_role" "test_role" {
             ]
         Effect = "Allow"
         Sid    = ""
-        Resource = "arn:${data.aws_partition.current.partition}:ecr:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/*"
         Principal = {
             Service = "ecr.amazonaws.com"
         }
