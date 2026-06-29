@@ -2,7 +2,7 @@ name: Run Terraform Destroy
 on: workflow_dispatch
 
 jobs:
-  terraform-plan:
+  terraform-destroy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
