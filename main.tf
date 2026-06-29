@@ -14,3 +14,17 @@ module "iam_role" {
   source = "./modules/iam_role"
   ecr_iam_role = var.ecr_iam_role
 }
+
+module "eks" {
+  source = "./modules/eks"
+  eks_cluster_name = var.eks_cluster_name
+  eks_cluster_role = var.eks_cluster_role
+  eks_node_role = var.eks_node_role
+  az1 = module.vpc.az1
+  az2 = module.vpc.az2
+  az3 = module.vpc.az3
+}
+
+module "vpc" {
+  source = "./modules/vpc"
+}
